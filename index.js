@@ -1,6 +1,26 @@
 const color = document.getElementById("color")
 const getSchemeBtn = document.getElementById("get-scheme-btn")
 const colorSchemeContainer = document.getElementById("color-scheme-container")
+const textCopied = document.getElementById('text-copied')
+const errorMessage = document.getElementById('error-message')
+
+//alert funtion
+function alertDialog(alertMessage){
+    navigator.clipboard.writeText(alertMessage)
+    .then(()=>{
+        textCopied.textContent = `${alertMessage} copied `
+        textCopied.classList.toggle("hidden")
+
+        setTimeout(() => textCopied.classList.toggle('hidden'),1500)
+        })
+    .catch(err =>{
+        errorMessage.classList.toggle('hidden')
+        setTimeout(() => errorMessage.classList.toggle('hidden'),1500)
+    })
+}
+
+//copying the input value change to clipboard
+color.addEventListener("input",()=>alertDialog(color.value))
 
 //for dark mode
 document.getElementById("theme-switcher").addEventListener("click", () => {
@@ -15,9 +35,7 @@ document.getElementById("theme-switcher").addEventListener("click", () => {
 
 document.addEventListener("click", function (e) {
     if (e.target.dataset.hex) {
-        const hexValue = e.target.dataset.hex
-        navigator.clipboard.writeText(hexValue)
-            .then(() => alert(`${hexValue} copied to clipboard`))
+        alertDialog(e.target.dataset.hex)
     }
 })
 

@@ -6,6 +6,7 @@
 
 html,
 body {
+    
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     padding: 0;
@@ -68,6 +69,7 @@ button:hover{
 
 
 .container {
+    position: relative;
     text-align: center;
     width: 250px;
     height: 250px;
@@ -83,9 +85,11 @@ button:hover{
     grid-template-areas:
         ". . . . . . . . . . . ."
         "i i i . s s s s s s s s"
+        ". . . . . . . . . . . ."
         "b b b b b b b . . . p p"
         ". . . . . . . . . . . .";
     gap: 0.25em;
+    margin-bottom: 0.5em;
 }
 
 input {
@@ -107,6 +111,7 @@ button {
 span {
     display: inline-block;
     grid-area: p;
+    padding-top:0.2em;
     cursor: pointer;
 }
 
@@ -123,4 +128,27 @@ span:hover {
 
 .color-value {
     height: 100px;
+}
+
+.text-copied,
+.error-message{
+    position: absolute;
+    top:0;
+    width: 100%;
+    color:white;
+    padding:0.5em 1em;
+    border-radius: 5px;
+}
+
+.text-copied{
+    background-color: #40d672;
+}
+
+.text-copied i,
+.error-message i{
+    margin-right:0.5em;
+}
+
+.error-message{
+    background-color: #fe5503;
 }
