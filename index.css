@@ -92,6 +92,8 @@ button:hover{
     margin-bottom: 0.5em;
 }
 
+/*COLOR INPUT STYLES*/
+
 input {
     grid-area: i;
 }

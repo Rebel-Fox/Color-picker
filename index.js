@@ -5,22 +5,23 @@ const textCopied = document.getElementById('text-copied')
 const errorMessage = document.getElementById('error-message')
 
 //alert funtion
-function alertDialog(alertMessage){
+function alertDialog(alertMessage) {
     navigator.clipboard.writeText(alertMessage)
-    .then(()=>{
-        textCopied.textContent = `${alertMessage} copied `
-        textCopied.classList.toggle("hidden")
+        .then(() => {
+            textCopied.innerHTML = `<i class="fa-solid fa-check"></i>${alertMessage} copied `
+            textCopied.classList.toggle("hidden")
 
-        setTimeout(() => textCopied.classList.toggle('hidden'),1500)
+            setTimeout(() => textCopied.classList.toggle('hidden'), 1250)
         })
-    .catch(err =>{
-        errorMessage.classList.toggle('hidden')
-        setTimeout(() => errorMessage.classList.toggle('hidden'),1500)
-    })
+        .catch(err => {
+            errorMessage.classList.toggle('hidden')
+            setTimeout(() => errorMessage.classList.toggle('hidden'), 1250)
+        })
 }
 
+//COLOR INPUT JS
 //copying the input value change to clipboard
-color.addEventListener("input",()=>alertDialog(color.value))
+color.addEventListener("input", () => alertDialog(color.value))
 
 //for dark mode
 document.getElementById("theme-switcher").addEventListener("click", () => {
@@ -55,5 +56,9 @@ getSchemeBtn.addEventListener("click", () => {
                     </div>`
             }).join('')
             colorSchemeContainer.innerHTML = colorSchemeContainerHtml
+        })
+        .catch(err => {
+            errorMessage.classList.toggle('hidden')
+            setTimeout(() => errorMessage.classList.toggle('hidden'), 1500)
         })
 })
